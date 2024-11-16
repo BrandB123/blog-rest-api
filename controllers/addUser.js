@@ -26,7 +26,7 @@ async function addUser(req, res, next){
         }
     })
 
-    res.redirect("/api/login");
+    res.json({ message: "User added successfully" });
 }
 
 module.exports = addUser;

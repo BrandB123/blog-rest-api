@@ -1,3 +1,4 @@
+const { post } = require('../routes/userRouter');
 const pool = require('./pool');
 
 async function addUser(name, email, password_hash, author_role) {
@@ -21,7 +22,7 @@ async function getUserByEmail(email) {
         )
         return rows[0]
     } catch(err) {
-        console.error("Error obtaining user", error);
+        console.error("Error obtaining user", err);
     }
 }
 
@@ -32,7 +33,7 @@ async function getAllPosts() {
         )
         return rows
     } catch(err) {
-        console.error("Error obtaining posts", error);
+        console.error("Error obtaining posts", err);
     } 
 }
 
@@ -45,12 +46,35 @@ async function getSinglePost(postId) {
         )
         return rows
     } catch(err) {
-        console.error("Error obtaining post", error);
+        console.error("Error obtaining post", err);
     } 
 }
 
+async function getCommentsOnSinglePost(postId) {
+    try{
+        const { rows } = await pool.query(`
+            SELECT * FROM comments
+            WHERE post_id = $1`,
+            [postId]
+        )
+        return rows
+    } catch(err) {
+        console.error("Error getting comments", err)
+    }
+}
+
+async function addComment(authorId, postId, message) {
+    try {
+        await pool.query(`
+            INSERT INTO comments (author_id, post_id, message, timestamp)
+            VALUES ($1, $2, $3, NOW())`,
+            [authorId, postId, message]
+        )
+    } catch (err){
+        console.error("Error adding comment to database: ", err)
+    }
+    
+}
 
 
-// getComments
-
-module.exports = { addUser, getUserByEmail, getAllPosts, getSinglePost}
+module.exports = { addUser, getUserByEmail, getAllPosts, getSinglePost, getCommentsOnSinglePost, addComment }

@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config();
 const {Router} = require('express');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
@@ -8,7 +8,6 @@ const userRouter = Router();
 
 userRouter.post("/signup", (req, res, next) => {
     addUser(req, res, next)
-    // res.redirect("/api/login");
 })
 
 userRouter.post("/login", (req, res, next) => {
@@ -27,17 +26,6 @@ userRouter.post("/login", (req, res, next) => {
             process.env.SECRET_KEY,
             { expiresIn: "24h"}
         );
-
-        // console.log(user);
-        // console.log(token);
-
-        // jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
-        //     if (err){
-        //         return res.status(401).send('Invalid token');
-        //     }
-        //     console.log(decoded)
-        // });
-
 
 	    res.json({ message : "login successful", token});
 	})(req, res, next);
