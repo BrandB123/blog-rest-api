@@ -1,4 +1,3 @@
-const { post } = require('../routes/userRouter');
 const pool = require('./pool');
 
 async function addUser(name, email, password_hash, author_role) {
@@ -75,6 +74,12 @@ async function addComment(authorId, postId, message) {
     }
     
 }
+
+// GET ALL POSTS FOR AUTHOR
+// GET A SINGLE POST FOR AUTHOR
+// ADD A POST FOR AUTHOR
+// UPDATE A POST FOR AUTHOR
+// DELETE A POST FOR AUTHOR
 
 
 module.exports = { addUser, getUserByEmail, getAllPosts, getSinglePost, getCommentsOnSinglePost, addComment }

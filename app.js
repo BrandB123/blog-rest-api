@@ -1,11 +1,9 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
-// const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const cors = require('cors');
 const db = require('./db/queries');
-const pool = require('./db/pool')
 const userRouter = require('./routes/userRouter')
 const postsRouter = require('./routes/postsRouter')
 
@@ -21,8 +19,7 @@ app.use("/api/posts", postsRouter);
 passport.use(
     new LocalStrategy(async (username, password, done) => {
       try {
-        const { rows } = await pool.query("SELECT * FROM users WHERE email = $1", [username]);
-        const user = rows[0];
+        const user = await db.getUserByEmail(username)
   
         if (!user) {
           return done(null, false);
@@ -39,20 +36,5 @@ passport.use(
       }
     })
 );
-
-// passport.serializeUser((user, done) => {
-//     done(null, user.id);
-// });
-  
-// passport.deserializeUser(async (id, done) => {
-//     try {
-//       const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
-//       const user = rows[0];
-  
-//       done(null, user);
-//     } catch(err) {
-//       done(err);
-//     }
-// });
 
 app.listen(3000, () => console.log("Server running on port 3000"))
