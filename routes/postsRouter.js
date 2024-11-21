@@ -2,8 +2,38 @@ const {Router} = require('express');
 const db = require('../db/queries');
 const verifyUser = require('../controllers/verifyUser');
 const addComment = require('../controllers/addComment');
+const getAuthorPostsAll = require('../controllers/getAuthorPostsAll');
+const getAuthorPostsSingle = require('../controllers/getAuthorPostsSingle');
+const addPostForAuthor = require('../controllers/addPostForAuthor');
+const updatePost = require('../controllers/updatePost');
+const deletePost = require('../controllers/deletePost');
 
 const postsRouter = Router();
+
+postsRouter.get("/author", 
+    verifyUser,
+    getAuthorPostsAll
+)
+
+postsRouter.get("/:postid/author", 
+    verifyUser,
+    getAuthorPostsSingle
+)
+
+postsRouter.post("/author", 
+    verifyUser,
+    addPostForAuthor
+)
+
+postsRouter.put("/:postid/author", 
+    verifyUser,
+    updatePost
+)
+
+postsRouter.delete("/:postid/author", 
+    verifyUser,
+    deletePost
+)
 
 postsRouter.get("/", async (req, res) => { 
     const posts = await db.getAllPosts()
@@ -24,36 +54,5 @@ postsRouter.post("/:postid/comments",
     verifyUser,
     addComment
 );
-
-// get all posts for author
-postsRouter.get("/author", 
-    verifyUser,
-    // ADD APPLICABLE CONTROLLER HERE
-)
-
-// get a post for author
-postsRouter.get("/:postid/author", 
-    verifyUser,
-    // ADD APPLICABLE CONTROLLER HERE
-)
-
-// add a post for author
-postsRouter.post("/author", 
-    verifyUser,
-    // ADD APPLICABLE CONTROLLER HERE
-)
-
-// update a post for author
-postsRouter.put("/:postid/author", 
-    verifyUser,
-    // ADD APPLICABLE CONTROLLER HERE
-)
-
-// delete post for author
-postsRouter.delete("/:postid/author", 
-    verifyUser,
-    // ADD APPLICABLE CONTROLLER HERE    
-)
-
 
 module.exports = postsRouter
