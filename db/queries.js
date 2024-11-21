@@ -114,9 +114,7 @@ async function addPostForAuthor(authorId, postTitle, postMessage, publishedStatu
     }
 }
 
-// UPDATE A POST FOR AUTHOR
 async function updatePostForAuthor(authorId, postTitle, postMessage, publishedStatus, postId){
-    // need a way to update the timestamp only when the post is being switched to published
     try {
         await pool.query(`    
             UPDATE posts
@@ -128,7 +126,6 @@ async function updatePostForAuthor(authorId, postTitle, postMessage, publishedSt
         console.error("Error updating post: ", err)
     }
 }
-
 
 async function deletePostForAuthor(postId){
     try {
@@ -142,9 +139,6 @@ async function deletePostForAuthor(postId){
     }
 }
 
-
-
-
 module.exports = { 
     addUser, 
     getUserByEmail, 
@@ -152,7 +146,6 @@ module.exports = {
     getSinglePost, 
     getCommentsOnSinglePost, 
     addComment,
-
     getPostsForAuthor,
     getSinglePostForAuthor,
     addPostForAuthor,

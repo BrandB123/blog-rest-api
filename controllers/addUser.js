@@ -8,7 +8,7 @@ async function addUser(req, res, next){
 	return res.status(422).json({ message: "All fields are required" })
     }
     
-    if (db.getUserByEmail(email)){
+    if (await db.getUserByEmail(email)){
         return res.status(409).json({ message: "A user already exists with this email" })
     }
 
