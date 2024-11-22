@@ -10,8 +10,8 @@ async function addPostForAuthor(req, res, next){
     const posts = await db.getPostsForAuthor(req.user.id)
 
     const postTitles = posts
-    .filter(post => post.id !== Number(req.params.postid))
-    .map(post => post.title)
+        .filter(post => post.id !== Number(req.user.id))
+        .map(post => post.title)
     
     if (postTitles.includes(req.body.postTitle)){
         return res.status(409).json({ message : "Post title must be unique"})

@@ -20,6 +20,5 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "supertest": "^7.0.0"
   }
 }

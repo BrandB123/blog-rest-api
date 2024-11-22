@@ -28,7 +28,7 @@ async function getUserByEmail(email) {
 async function getAllPosts() {
     try {
         const { rows } = await pool.query(`
-            SELECT * FROM posts`,
+            SELECT * FROM posts`
         )
         return rows
     } catch(err) {
