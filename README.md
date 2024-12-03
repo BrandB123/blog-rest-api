@@ -13,9 +13,11 @@ Technology and Concepts Displayed:
  - RESTful API (building and consuming)
  - CORS
  - PostgreSQL
- - Deployment on Railway
+ - Deployment of backend app on Railway
+ - Deployment on frontend app on Vercel
 
- Author Site Repo: ADD LINK HERE
- Author Site: ADD LINK HERE
- Reader Site Repo: ADD LINK HERE
- Reader Site: ADD LINK HERE
+ Author Site Repo: https://github.com/BrandB123/blog-rest-author-site
+ Author Site: https://blog-rest-author-site-njl88o6f2-brandon-bartletts-projects.vercel.app/
+
+ Reader Site Repo: TODO
+ Reader Site: TODO
