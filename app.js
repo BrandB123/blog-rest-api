@@ -12,7 +12,11 @@ const app = express();
 
 app.options("*", cors())
 app.use(cors({
-  origin: ["https://blog-rest-author-site-9b61bo2a7-brandon-bartletts-projects.vercel.app"]
+  origin: [
+    "https://blog-rest-author-site-9b61bo2a7-brandon-bartletts-projects.vercel.app",
+    "https://blog-rest-reader-site-3lryam77z-brandon-bartletts-projects.vercel.app",
+    "http://localhost:5173"
+  ]
 }))
 
 app.use(express.json())
