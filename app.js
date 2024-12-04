@@ -10,9 +10,11 @@ const postsRouter = require('./routes/postsRouter')
 
 const app = express();
 
+app.options("*", cors())
 app.use(cors({
   origin: ["https://blog-rest-author-site-9b61bo2a7-brandon-bartletts-projects.vercel.app/"]
 }))
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 
