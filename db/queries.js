@@ -52,8 +52,10 @@ async function getSinglePost(postId) {
 async function getCommentsOnSinglePost(postId) {
     try{
         const { rows } = await pool.query(`
-            SELECT * FROM comments
-            WHERE post_id = $1`,
+            SELECT comments.id, comments.message, users.name 
+            FROM comments
+            INNER JOIN users ON comments.author_id=users.id
+            WHERE comments.post_id = $1`,
             [postId]
         )
         return rows
