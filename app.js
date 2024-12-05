@@ -13,6 +13,8 @@ const app = express();
 app.options("*", cors())
 app.use(cors({
   origin: [
+    "https://blog-rest-reader-site.vercel.app/",
+    "https://blog-rest-author-site.vercel.app/",
     "https://blog-rest-author-site-9b61bo2a7-brandon-bartletts-projects.vercel.app",
     "https://blog-rest-reader-site-cn8l2eeo7-brandon-bartletts-projects.vercel.app",
     "http://localhost:5173"
