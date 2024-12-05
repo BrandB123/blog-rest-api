@@ -17,7 +17,9 @@ Technology and Concepts Displayed:
  - Deployment on frontend app on Vercel
 
  Author Site Repo: https://github.com/BrandB123/blog-rest-author-site
- Author Site: https://blog-rest-author-site-9b61bo2a7-brandon-bartletts-projects.vercel.app/
+
+ Author Site: https://blog-rest-author-site.vercel.app
 
  Reader Site Repo: https://github.com/BrandB123/blog-rest-reader-site
- Reader Site: https://blog-rest-reader-site-3lryam77z-brandon-bartletts-projects.vercel.app
+
+ Reader Site: https://blog-rest-reader-site.vercel.app
