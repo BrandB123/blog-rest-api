@@ -14,7 +14,8 @@ app.options("*", cors())
 app.use(cors({
   origin: [
     "https://blog-rest-reader-site.vercel.app",
-    "https://blog-rest-author-site.vercel.app"
+    "https://blog-rest-author-site.vercel.app",
+    "http://localhost:5173"
   ]
 }))
 
@@ -27,7 +28,7 @@ app.use("/api/posts", postsRouter);
 passport.use(
     new LocalStrategy(async (username, password, done) => {
       try {
-        const user = await db.getUserByEmail(username)
+        const user = await db.getUserByEmail(username.toLowerCase())
   
         if (!user) {
           return done(null, false);

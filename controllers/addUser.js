@@ -8,7 +8,7 @@ async function addUser(req, res, next){
 	return res.status(422).json({ message: "All fields are required" })
     }
     
-    if (await db.getUserByEmail(email)){
+    if (await db.getUserByEmail(email.toLowerCase())){
         return res.status(409).json({ message: "A user already exists with this email" })
     }
 
@@ -17,7 +17,7 @@ async function addUser(req, res, next){
             return next(err);
         }
         try {
-            db.addUser(name, email, hashedPassword, authorStatus)
+            db.addUser(name, email.toLowerCase(), hashedPassword, authorStatus)
         } catch (err) {
             return next(err)
         }
